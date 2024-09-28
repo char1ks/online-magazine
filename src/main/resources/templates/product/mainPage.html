@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все продукты</title>
+    <style>
+        /* Стили для кнопки "В профиль" */
+        .profile-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .profile-button:hover {
+            background-color: #0056b3;
+        }
+        /* Стили для кнопки "Купить" */
+        .buy-button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .buy-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<h1>Все продукты</h1>
+<!-- Кнопка "В профиль" -->
+<a class="profile-button" th:href="@{/user/profile}">В профиль</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Описание</th>
+        <th>Срок продажи</th>
+        <th>Тип продукта</th>
+        <th>Детали</th>
+        <th>Действия</th> <!-- Новый столбец "Действия" -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${productsPage.content}">
+        <td th:text="${product.nomination}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${#dates.format(product.sellBy, 'yyyy-MM-dd')}"></td>
+        <td th:text="${product.productType}"></td>
+        <td>
+            <a th:href="@{/product/{id}(id=${product.id})}">Просмотреть</a>
+        </td>
+        <td>
+            <a class="buy-button" th:href="@{/product/buy/{id}(id=${product.id})}">Купить</a> <!-- Кнопка "Купить" -->
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span>Страница <span th:text="${productsPage.number + 1}"></span> из <span th:text="${productsPage.totalPages}"></span></span>
+    <div>
+        <a th:if="${productsPage.hasPrevious()}" th:href="@{/product(page=${productsPage.number - 1}, size=${productsPage.size})}">Предыдущая</a>
+        <a th:if="${productsPage.hasNext()}" th:href="@{/product(page=${productsPage.number + 1}, size=${productsPage.size})}">Следующая</a>
+    </div>
+</div>
+</body>
+</html>

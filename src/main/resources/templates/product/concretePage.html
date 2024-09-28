@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали продукта</title>
+</head>
+<body>
+<h1 th:text="${concreteProduct.nomination}">Название продукта</h1>
+<p><strong>Цена:</strong> <span th:text="${concreteProduct.price}"></span></p>
+<p><strong>Описание:</strong> <span th:text="${concreteProduct.description}"></span></p>
+<p><strong>Срок продажи:</strong> <span th:text="${#dates.format(concreteProduct.sellBy, 'yyyy-MM-dd')}"></span></p>
+<p><strong>Тип продукта:</strong> <span th:text="${concreteProduct.productType}"></span></p>
+<a th:href="@{/product}">Назад к списку продуктов</a>
+</body>
+</html>

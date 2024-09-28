@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+</head>
+<body>
+<h1>Вход</h1>
+<form th:action="@{/process_login}" th:object="${loginUser}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" th:field="*{username}" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" th:field="*{password}" required>
+    <br>
+    <input type="submit" value="Войти"></input>
+</form>
+<p>Нет аккаунта? <a th:href="@{/user/register}">Зарегистрируйтесь</a></p>
+</body>
+</html>

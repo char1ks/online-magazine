@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать продукт</title>
+</head>
+<body>
+<h1>Редактировать продукт</h1>
+<form th:action="@{/product/{id}(id=${concreteProduct.id})}" th:object="${concreteProduct}" method="post">
+    <label for="nomination">Название:</label>
+    <input type="text" id="nomination" th:field="*{nomination}" required>
+    <br>
+    <label for="price">Цена:</label>
+    <input type="text" id="price" th:field="*{price}" required>
+    <br>
+    <label for="description">Описание:</label>
+    <textarea id="description" th:field="*{description}" required></textarea>
+    <br>
+    <label for="sellBy">Срок продажи:</label>
+    <input type="date" id="sellBy" th:field="*{sellBy}" required>
+    <br>
+    <label for="productType">Тип продукта:</label>
+    <select id="productType" th:field="*{productType}" required>
+        <option value="EAT" th:selected="${concreteProduct.productType == 'EAT'}">Еда</option>
+        <option value="USE" th:selected="${concreteProduct.productType == 'USE'}">Предмет</option>
+    </select>
+    <br>
+    <button type="submit">Сохранить изменения</button>
+</form>
+<p><a th:href="@{/product}">Назад к списку продуктов</a></p>
+</body>
+</html>

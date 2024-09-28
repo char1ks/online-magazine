@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .profile-info, .owned-products {
+            margin-bottom: 20px;
+        }
+        .logout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .logout-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Личный кабинет</h1>
+    <div class="profile-info">
+        <h2>Информация о пользователе</h2>
+        <p><strong>Имя пользователя:</strong> <span th:text="${user.username}"></span></p>
+        <p><strong>Роль:</strong> <span th:text="${user.userRole}"></span></p>
+    </div>
+    <div class="owned-products">
+        <h2>Ваши продукты</h2>
+        <ul>
+            <th:block th:each="product : ${user.getOwnProducts()}">
+                <li th:text="${product.nomination}"></li> <!-- Предполагается, что у продукта есть поле name -->
+            </th:block>
+        </ul>
+    </div>
+    <a th:href="@{/logout}" class="logout-button">Выход</a>
+</div>
+</body>
+</html>

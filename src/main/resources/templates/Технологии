@@ -1,0 +1,13 @@
+SpringMVC
+Spring Boot
+Spring Security
+csrf защита
+Validation
+Spring Data JPA(=>Hibernate)
+Postgres
+Отношения между сущностями
+Шифрование
+Кастомный вход/регистрация
+Роли(покупатель,продавец)
+Пагинация
+Кастомные запросы в Spring Data JPA

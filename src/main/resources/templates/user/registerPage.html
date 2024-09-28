@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+<h1>Регистрация</h1>
+<form th:action="@{/user/reg}" th:object="${registerUser}" method="post">
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" th:field="*{username}" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" th:field="*{password}" required>
+    <br>
+    <select id="userRole" th:field="*{userRole}" required>
+        <option value="ROLE_SELLER">Продавец</option>
+        <option value="ROLE_BUYER">Покупатель</option>
+    </select>
+    <br>
+    <button type="submit">Зарегистрироваться</button>
+</form>
+<p>Уже есть аккаунт? <a th:href="@{/user/login}">Войдите</a></p>
+
+</body>
+</html>
